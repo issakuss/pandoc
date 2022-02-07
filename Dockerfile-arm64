@@ -1,0 +1,12 @@
+FROM ubuntu:20.04@sha256:13572ca2bcc043618c2c2ab6ee7dda8ede63ff782a604f58e69c6e7dac62b626
+ARG DEBIAN_FRONTEND=noninteractive
+#
+RUN apt update \
+&&  apt install -y wget \
+#
+&&  version=2.17.1.1 \
+&&  arch=arm64 \
+#
+&&  wget -O /tmp/pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${version}/pandoc-${version}-linux-${arch}.tar.gz" \
+&&  tar -xvzf /tmp/pandoc.tar.gz -C /tmp \
+&&  mv /tmp/pandoc*/bin/pandoc /usr/local/bin/pandoc
