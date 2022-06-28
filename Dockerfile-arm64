@@ -1,12 +1,12 @@
-FROM ubuntu:20.04@sha256:13572ca2bcc043618c2c2ab6ee7dda8ede63ff782a604f58e69c6e7dac62b626
+FROM ubuntu:22.10@sha256:a9bb8163533a936c7f4463319a299ff15e35a24db77ba6838d56c14f03b9863b
 ARG DEBIAN_FRONTEND=noninteractive
 #
 RUN apt update \
 &&  apt install -y wget \
 #
-&&  version=2.17.1.1 \
-&&  arch=arm64 \
+&&  VERSION=2.18 \
+&&  ARCH=arm64 \
 #
-&&  wget -O /tmp/pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${version}/pandoc-${version}-linux-${arch}.tar.gz" \
+&&  wget -O /tmp/pandoc.tar.gz "https://github.com/jgm/pandoc/releases/download/${VERSION}/pandoc-${VERSION}-linux-${ARCH}.tar.gz" \
 &&  tar -xvzf /tmp/pandoc.tar.gz -C /tmp \
 &&  mv /tmp/pandoc*/bin/pandoc /usr/local/bin/pandoc
